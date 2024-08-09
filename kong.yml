@@ -1,0 +1,14 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+- host: localhost
+  name: fleetmangement
+  port: 80
+  protocol: http
+  routes:
+  - name: apis
+    paths:
+    - /mock
+    strip_path: true
+

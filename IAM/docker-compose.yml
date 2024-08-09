@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  django:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+
+  kong:
+    image: kong:latest
+    ports:
+      - "8001:8001"  # Admin API
+      - "8000:8000"  # Proxy
+    environment:
+      KONG_DATABASE: "MySQL"  # Use MySQL database
+      KONG_PG_HOST: "localhost"  # Replace calwith your MySQL host
+      KONG_PG_USER: "root"  # Replace with your MySQL username
+      KONG_PG_PASSWORD: "root"  # Replace with your MySQL password
+      KONG_PG_DATABASE: "kong"  # Replace with the name of your Kong database
+
